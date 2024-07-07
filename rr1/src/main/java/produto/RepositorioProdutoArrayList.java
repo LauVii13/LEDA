@@ -56,7 +56,7 @@ public class RepositorioProdutoArrayList {
 	}
 
 	/**
-	 * Insere um novo produto (sem se preocupar com duplicatas)
+	 * Insere um novo produto (sem se p reocupar com duplicatas)
 	 */
 	public void inserir(Produto produto) {
 		// TODO Implement your code here
