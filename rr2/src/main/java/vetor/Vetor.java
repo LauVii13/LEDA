@@ -9,10 +9,10 @@ import java.util.Comparator;
  * @author Adalberto
  *
  */
-public class Vetor {
+public class Vetor<T extends Comparable> {
 
 	// O array interno onde os objetos manipulados são guardados
-	private Object[] arrayInterno;
+	private T[] arrayInterno;
 
 	// O tamanho que o array interno terá
 	private int tamanho;
@@ -39,33 +39,77 @@ public class Vetor {
 	}
 
 	// Insere um objeto no vetor
-	public void inserir(Object o) {
-		// TODO Remove the exception and implement your code
-		throw new UnsupportedOperationException("Not implemented yet!");
+	public void inserir(T o) {
+    if(this.indice+1 >= this.tamanho)
+      return;
+		this.arrayInterno[++this.indice] = o;
 	}
 
 	// Remove um objeto do vetor
-	public Object remover(Object o) {
-		// TODO Remove the exception and implement your code
-		throw new UnsupportedOperationException("Not implemented yet!");
+	public T remover(T o) {
+		if(procurar(o) == null)
+      return null;
+
+    int j = 0;
+    for(int i = 0; i <= this.indice; i++){
+      if(o.equals(this.arrayInterno[i]))
+        continue;
+      
+      this.arrayInterno[j++] = this.arrayInterno[i];
+    }
+    this.arrayInterno[this.indice--] = null;
+    
+    return o;
 	}
 
 	// Procura um elemento no vetor
-	public Object procurar(Object o) {
-		// TODO Remove the exception and implement your code
-		throw new UnsupportedOperationException("Not implemented yet!");
+	public T procurar(T o) {
+		for(T n : this.arrayInterno){
+      if(o.equals(n))
+        return n;
+    }
+    return null;
 	}
 
 	// Diz se o vetor está vazio
 	public boolean isVazio() {
-		// TODO Remove the exception and implement your code
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return this.indice < 0;
 	}
 
 	// Diz se o vetor está cheio
 	public boolean isCheio() {
-		// TODO Remove the exception and implement your code
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return this.indice+1 >= this.tamanho;
 	}
 
+  public T maximo(){
+    if(isVazio())
+      return null;
+    
+    T maior = this.arrayInterno[0];
+
+    for(int i = 1; i <= this.indice; i++) {
+      T atual = this.arrayInterno[i];
+
+      if(comparadorMaximo.compare(atual, maior) > 0)
+        maior = atual;
+    }
+
+    return maior;
+  }
+
+  public T minimo(){
+    if(isVazio())
+      return null;
+    
+    T menor = this.arrayInterno[0];
+
+    for(int i = 1; i <= this.indice; i++) {
+      T atual = this.arrayInterno[i];
+
+      if(comparadorMinimo.compare(atual, menor) < 0)
+        menor = atual;
+    }
+
+    return menor;
+  }
 }
