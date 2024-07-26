@@ -19,19 +19,27 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends
     if (leftIndex < 0 || rightIndex >= array.length || leftIndex >= rightIndex) {
       // casos de exceção
     } else {
-      bubble(array, leftIndex, rightIndex);
-      sort(array, leftIndex, rightIndex - 1);
+      boolean trocou = bubble(array, leftIndex, rightIndex);
+      if(trocou)
+        sort(array, leftIndex, rightIndex - 1);
     }
   }
 
-  private void bubble(T[] array, int leftIndex, int rightIndex) {
+  private boolean bubble(T[] array, int leftIndex, int rightIndex) {
+    boolean trocou = false;
     if (leftIndex >= rightIndex) {
     } else {
-      if (array[leftIndex].compareTo(array[leftIndex + 1]) > 0)
-        Util.swap(array, leftIndex, leftIndex + 1);
+      if (array[leftIndex].compareTo(array[leftIndex + 1]) > 0){
+          Util.swap(array, leftIndex, leftIndex + 1);
+          trocou = true;
+        }
 
-      bubble(array, leftIndex + 1, rightIndex);
+      boolean trocaFutura = bubble(array, leftIndex + 1, rightIndex);
+      if(trocaFutura)
+        trocou = true;
     }
+
+    return trocou;
   }
 
 }

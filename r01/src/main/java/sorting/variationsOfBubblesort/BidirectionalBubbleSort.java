@@ -18,29 +18,43 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends
     if (leftIndex < 0 || rightIndex >= array.length || leftIndex > rightIndex) {
       // casos de exceção
     } else {
-      bubbleToRight(array, leftIndex, rightIndex);
-      bubbleToLeft(array, leftIndex, rightIndex);
-      sort(array, leftIndex + 1, rightIndex - 1);
+      boolean trocouRight = bubbleToRight(array, leftIndex, rightIndex);
+      boolean trocouLeft = bubbleToLeft(array, leftIndex, rightIndex);
+      if(trocouRight || trocouLeft)
+        sort(array, leftIndex + 1, rightIndex - 1);
     }
   }
 
-  private void bubbleToRight(T[] array, int leftIndex, int rightIndex) {
+  private boolean bubbleToRight(T[] array, int leftIndex, int rightIndex) {
+    boolean trocou = false;
     if (leftIndex >= rightIndex) {
     } else {
-      if (array[leftIndex].compareTo(array[leftIndex + 1]) > 0)
+      if (array[leftIndex].compareTo(array[leftIndex + 1]) > 0){
         Util.swap(array, leftIndex, leftIndex + 1);
+        trocou = true;
+      }
 
-      bubbleToRight(array, leftIndex + 1, rightIndex);
+      boolean trocaFutura = bubbleToRight(array, leftIndex + 1, rightIndex);
+      if(trocaFutura)
+        trocou = true;
     }
+
+    return trocou;
   }
 
-  private void bubbleToLeft(T[] array, int leftIndex, int rightIndex) {
+  private boolean bubbleToLeft(T[] array, int leftIndex, int rightIndex) {
+    boolean trocou = false;
     if (leftIndex >= rightIndex) {
     } else {
-      if (array[rightIndex].compareTo(array[rightIndex - 1]) < 0)
+      if (array[rightIndex].compareTo(array[rightIndex - 1]) < 0){
         Util.swap(array, rightIndex, rightIndex - 1);
+        trocou = true;
+      }
 
-      bubbleToLeft(array, leftIndex, rightIndex - 1);
+      boolean trocaFutura = bubbleToLeft(array, leftIndex, rightIndex - 1);
+      if(trocaFutura)
+        trocou = true;
     }
+    return trocou;
   }
 }

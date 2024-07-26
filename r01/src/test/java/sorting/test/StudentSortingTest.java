@@ -47,9 +47,9 @@ public class StudentSortingTest {
     // this.implementation = new BubbleSort<>();
     // this.implementation = new InsertionSort<>();
     // this.implementation = new SelectionSort<>();
-    // this.implementation = new BidirectionalBubbleSort<>();
+    this.implementation = new BidirectionalBubbleSort<>();
     // this.implementation = new RecursiveBubbleSort<>();
-    this.implementation = new RecursiveSelectionSort<>();
+    // this.implementation = new RecursiveSelectionSort<>();
   }
 
   public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
