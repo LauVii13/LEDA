@@ -1,7 +1,5 @@
 package sorting.divideAndConquer;
 
-import java.util.Arrays;
-
 import sorting.AbstractSorting;
 
 /**
@@ -26,10 +24,11 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
   }
 
   private void mergeArrays(T[] array, int leftIndex, int middle, int rightIndex) {
-    int lengthLeft = middle - leftIndex + 1;
-    int lengthRight = rightIndex - middle;
-    T[] l = criaArrayTemp(array, leftIndex, middle, lengthLeft);
-    T[] r = criaArrayTemp(array, middle + 1, rightIndex, lengthRight);
+    int leftLength = middle - leftIndex + 1;
+    int rightLength = rightIndex - middle;
+
+    T[] l = criaArrayTemp(array, leftIndex, middle, leftLength);
+    T[] r = criaArrayTemp(array, middle + 1, rightIndex, rightLength);
 
     int i = 0, j = 0, p = leftIndex;
 

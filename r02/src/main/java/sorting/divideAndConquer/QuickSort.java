@@ -37,7 +37,6 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSorting<T> {
     }
 
     return ponteiro;
-
   }
 
   private boolean casoBase(T[] array, int leftIndex, int rightIndex) {

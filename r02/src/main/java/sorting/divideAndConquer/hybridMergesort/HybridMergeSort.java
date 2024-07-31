@@ -36,6 +36,11 @@ public class HybridMergeSort<T extends Comparable<T>> extends
     this.MERGESORT_APPLICATIONS = 0;
     this.INSERTIONSORT_APPLICATIONS = 0;
 
+    hybridMerge(array, leftIndex, rightIndex);
+  }
+
+  private void hybridMerge(T[] array, int leftIndex, int rightIndex) {
+    this.MERGESORT_APPLICATIONS++;
     if (casosDeQuebra(array, leftIndex, rightIndex)) {
     } else {
       if ((rightIndex - leftIndex) + 1 <= SIZE_LIMIT)
@@ -43,17 +48,17 @@ public class HybridMergeSort<T extends Comparable<T>> extends
       else {
         int middle = (rightIndex + leftIndex) / 2;
 
-        sort(array, leftIndex, middle);
-        sort(array, middle + 1, rightIndex);
+        hybridMerge(array, leftIndex, middle);
+        hybridMerge(array, middle + 1, rightIndex);
 
         mergeArrays(array, leftIndex, middle, rightIndex);
       }
     }
-
   }
 
   private void insertionSort(T[] array, int leftIndex, int rightIndex) {
     this.INSERTIONSORT_APPLICATIONS++;
+
     for (int i = leftIndex; i <= rightIndex; i++) {
       int indiceAtual = i;
       while (indiceAtual > leftIndex && array[indiceAtual].compareTo(array[indiceAtual - 1]) < 0) {
@@ -64,11 +69,12 @@ public class HybridMergeSort<T extends Comparable<T>> extends
   }
 
   private void mergeArrays(T[] array, int leftIndex, int middle, int rightIndex) {
-    this.MERGESORT_APPLICATIONS++;
-    int lengthLeft = middle - leftIndex + 1;
-    int lengthRight = rightIndex - middle;
-    T[] l = criaArrayTemp(array, leftIndex, middle, lengthLeft);
-    T[] r = criaArrayTemp(array, middle + 1, rightIndex, lengthRight);
+
+    int leftLength = middle - leftIndex + 1;
+    int rightLength = rightIndex - middle;
+
+    T[] l = criaArrayTemp(array, leftIndex, middle, leftLength);
+    T[] r = criaArrayTemp(array, middle + 1, rightIndex, rightLength);
 
     int i = 0, j = 0, p = leftIndex;
 
