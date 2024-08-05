@@ -40,7 +40,6 @@ public class HybridMergeSort<T extends Comparable<T>> extends
   }
 
   private void hybridMerge(T[] array, int leftIndex, int rightIndex) {
-    this.MERGESORT_APPLICATIONS++;
     if (casosDeQuebra(array, leftIndex, rightIndex)) {
     } else {
       if ((rightIndex - leftIndex) + 1 <= SIZE_LIMIT)
@@ -50,6 +49,8 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 
         hybridMerge(array, leftIndex, middle);
         hybridMerge(array, middle + 1, rightIndex);
+
+        this.MERGESORT_APPLICATIONS++;
 
         mergeArrays(array, leftIndex, middle, rightIndex);
       }
