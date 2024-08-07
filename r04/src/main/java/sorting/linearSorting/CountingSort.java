@@ -35,11 +35,11 @@ public class CountingSort extends AbstractSorting<Integer> {
           max = array[i];
       }
 
-      int[] aux = new int[max - min + 1];
+      int[] aux = new int[max + 1];
 
       // contando
       for (int i = leftIndex; i <= rightIndex; i++)
-        aux[array[i] - min]++;
+        aux[array[i]]++;
 
       // soma acumulada
       for (int i = 1; i < aux.length; i++)
@@ -48,8 +48,8 @@ public class CountingSort extends AbstractSorting<Integer> {
       // atribui em array ordenado
       for (int i = rightIndex; i >= leftIndex; i--) {
         int val = array[i];
-        aux[val - min]--;
-        int correctPosition = aux[val - min];
+        aux[val]--;
+        int correctPosition = aux[val];
         arrayOrd[correctPosition] = val;
       }
 
