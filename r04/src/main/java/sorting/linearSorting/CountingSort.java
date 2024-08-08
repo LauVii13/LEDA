@@ -23,7 +23,7 @@ public class CountingSort extends AbstractSorting<Integer> {
   public void sort(Integer[] array, int leftIndex, int rightIndex) {
     if (casoBase(array, leftIndex, rightIndex)) {
     } else {
-      int[] arrayOrd = new int[array.length];
+      int[] arrayOrd = new int[rightIndex - leftIndex + 1];
 
       int min = array[leftIndex], max = array[rightIndex];
 
@@ -54,8 +54,8 @@ public class CountingSort extends AbstractSorting<Integer> {
       }
 
       // sobreescrevendo array principal
-      for (int i = leftIndex; i <= rightIndex; i++)
-        array[i] = arrayOrd[i];
+      for (int i = 0; i < arrayOrd.length; i++)
+        array[leftIndex + i] = arrayOrd[i];
     }
   }
 

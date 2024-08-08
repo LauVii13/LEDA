@@ -38,8 +38,8 @@ public class StudentSortingTest {
    * do aluno
    */
   private void getImplementation() {
-    this.implementation = new CountingSort();
-    //this.implementation = new ExtendedCountingSort();
+    // this.implementation = new CountingSort();
+    this.implementation = new ExtendedCountingSort();
   }
 
   public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
