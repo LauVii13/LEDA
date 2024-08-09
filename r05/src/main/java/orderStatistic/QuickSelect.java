@@ -1,5 +1,7 @@
 package orderStatistic;
 
+import util.Util;
+
 /**
  * O quickselect eh um algoritmo baseado no quicksort para
  * descobrir/selectionar, em tempo linear, a k-esima estatistica de ordem
@@ -18,31 +20,63 @@ package orderStatistic;
  */
 public class QuickSelect<T extends Comparable<T>> {
 
-	/**
-	 * O algoritmo quickselect usa a mesma abordagem do quicksort para calcular o
-	 * k-esimo menor elemento (k-esima estatistica de ordem) de um determinado
-	 * array de dados comparaveis. Primeiro ele escolhe um elemento como o pivot
-	 * e particiona os dados em duas partes, baseando-se no pivot (exatemente da
-	 * mesma forma que o quicksort). Depois disso, ele chama recursivamente o
-	 * mesmo algoritmo em apenas uma das metades (a que contem o k-esimo menor
-	 * elemento). Isso reduz a complexidade de O(n.log n) para O(n).
-	 *
-	 * Caso o array seja vazio ou a ordem (posicao) do elemento desejado esteja
-	 * fora do tamanho do array, o metodo deve retornar null.
-	 *
-	 *
-	 * @param array
-	 *            o array de dados a procurar o k-esimo menor elemento
-	 *            este array normalmente nao esta ordenado
-	 * @param k
-	 *            a ordem do elemento desejado. 1 significa primeiro menor
-	 *            elemento, 2 significa segundo menor elemento e assim por
-	 *            diante
-	 * @return
-	 *
-	 */
-	public T quickSelect(T[] array, int k) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+  /**
+   * O algoritmo quickselect usa a mesma abordagem do quicksort para calcular o
+   * k-esimo menor elemento (k-esima estatistica de ordem) de um determinado
+   * array de dados comparaveis. Primeiro ele escolhe um elemento como o pivot
+   * e particiona os dados em duas partes, baseando-se no pivot (exatemente da
+   * mesma forma que o quicksort). Depois disso, ele chama recursivamente o
+   * mesmo algoritmo em apenas uma das metades (a que contem o k-esimo menor
+   * elemento). Isso reduz a complexidade de O(n.log n) para O(n).
+   *
+   * Caso o array seja vazio ou a ordem (posicao) do elemento desejado esteja
+   * fora do tamanho do array, o metodo deve retornar null.
+   *
+   *
+   * @param array
+   *              o array de dados a procurar o k-esimo menor elemento
+   *              este array normalmente nao esta ordenado
+   * @param k
+   *              a ordem do elemento desejado. 1 significa primeiro menor
+   *              elemento, 2 significa segundo menor elemento e assim por
+   *              diante
+   * @return
+   *
+   */
+  public T quickSelect(T[] array, int k) {
+    T result = null;
+    if (casoBase(array, k)) {
+    } else {
+      int index = partition(array, 0, array.length - 1, k);
+      result = array[index];
+    }
+
+    return result;
+  }
+
+  private int partition(T[] array, int leftIndex, int rightIndex, int k) {
+    int index = -1;
+    int pivot = leftIndex;
+    int pointer = leftIndex;
+
+    for (int i = leftIndex; i <= rightIndex; i++) {
+      if (array[i].compareTo(array[pivot]) < 0)
+        Util.swap(array, ++pointer, i);
+    }
+
+    Util.swap(array, pivot, pointer);
+
+    if (k - 1 < pointer)
+      index = partition(array, leftIndex, pointer - 1, k);
+    else if (k - 1 > pointer)
+      index = partition(array, pointer + 1, rightIndex, k);
+    else
+      index = pointer;
+
+    return index;
+  }
+
+  private boolean casoBase(T[] array, int k) {
+    return array.length == 0 || k <= 0 || k > array.length;
+  }
 }

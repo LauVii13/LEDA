@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-08-08T21:47:26.621-0300</date>
+  <logger>VINICIUS GABRIEL LAUREANO</logger>
+  <level>FINE</level>
+  <message>File 123111119-VINICIUS GABRIEL LAUREANO.zip was received. It was sent by VINICIUS GABRIEL LAUREANO from IP 172.27.0.1 at 08-08-2024 21*47*26</message>
+</record>
