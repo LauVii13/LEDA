@@ -67,33 +67,33 @@ All 'Data Structure and Algorithms' Exercises
 ### Sorting Algorithms
 
 - **BubbleSort**
-  - Basic
+  - Classic
   - Recursive
   - Bidirectional
 - **SelectionSort**
-  - Basic
+  - Classic
   - Recursive
 - **InsertionSort**
-  - Basic
+  - Classic
   - Recursive
 - **MergeSort**
-  - Basic
+  - Classic
   - Hybrid
 - **QuickSort**
-  - Basic (Lomuto)
-  - Basic (Hoare)
+  - Classic (Lomuto)
+  - Classic (Hoare)
   - Median of Three
 - **CountingSort**
-  - Basic
+  - Classic
   - ExtendedCountingSort
 - **RadixSort**
-  - Basic
+  - Classic
 - **BucketSort**
-  - Basic
+  - Classic
 
 ### Binary Search
 
-- Basic
+- Classic
 - Recursive
 - Recursive Ceil
 - Recursive Floor
