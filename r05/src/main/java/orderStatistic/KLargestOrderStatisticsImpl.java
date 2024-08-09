@@ -55,9 +55,9 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
    * @param k
    * @return
    */
-  public T orderStatistics(T[] array, int kAtual) {
-    bubbleSort(array, kAtual);
-    return array[array.length - kAtual];
+  public T orderStatistics(T[] array, int k) {
+    bubbleSort(array, k);
+    return array[array.length - k];
   }
 
   private void bubbleSort(T[] array, int kAtual) {
