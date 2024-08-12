@@ -93,9 +93,9 @@ All 'Data Structure and Algorithms' Exercises
 
 ### Binary Search
 
-- Classic
-- Recursive
-- Recursive Ceil
+- ✅ Classic
+- ✅ Recursive
+- ✅ Recursive Ceil
 - Recursive Floor
 - Recursive Closest
 - Recursive Last Occurrence
