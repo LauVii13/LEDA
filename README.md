@@ -100,8 +100,8 @@ All 'Data Structure and Algorithms' Exercises
 - ✅ Recursive Closest
 - ✅ Recursive Last Occurrence
 - ✅ Recursive First Occurrence
-- QuickSelect (unsorted array)
-- Square Root
+- ✅ QuickSelect (unsorted array)
+- ✅ Square Root
   
 ### Order Statistics (unsorted array)
 
