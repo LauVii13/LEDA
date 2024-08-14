@@ -1,6 +1,7 @@
 package binarysearch;
 
 import binarysearch.implementations.Classic;
+import binarysearch.implementations.QuickSelectUnsortedArray;
 import binarysearch.implementations.Recursive;
 import binarysearch.implementations.RecursiveCeil;
 import binarysearch.implementations.RecursiveFloor;
@@ -21,7 +22,8 @@ public class Main {
     // AbstractBinarySearch<Integer> binarySearch = new RecursiveClosest();
     // AbstractBinarySearch<Integer> binarySearch = new
     // RecursiveFirstOccurrence<>();
-    AbstractBinarySearch<Integer> binarySearch = new RecursiveLastOccurrence<>();
+    // AbstractBinarySearch<Integer> binarySearch = new RecursiveLastOccurrence<>();
+    AbstractBinarySearch<Integer> binarySearch = new QuickSelectUnsortedArray();
 
     System.out.println(binarySearch.binSearch(unitSize, -2));
     System.out.println(binarySearch.binSearch(unitSize, 10));
