@@ -98,8 +98,8 @@ All 'Data Structure and Algorithms' Exercises
 - ✅ Recursive Ceil
 - ✅ Recursive Floor
 - ✅ Recursive Closest
-- Recursive Last Occurrence
-- Recursive First Occurrence
+- ✅ Recursive Last Occurrence
+- ✅ Recursive First Occurrence
 - QuickSelect (unsorted array)
 - Square Root
   
