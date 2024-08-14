@@ -29,6 +29,6 @@ public class RecursiveFirstOccurrence<T extends Comparable<T>> extends AbstractB
   }
 
   private boolean previousIsTheSame(T[] arrays, int pivot) {
-    return pivot == 0 || arrays[pivot - 1].compareTo(arrays[pivot]) == 0;
+    return pivot > 0 && arrays[pivot - 1].compareTo(arrays[pivot]) == 0;
   }
 }
