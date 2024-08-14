@@ -96,8 +96,8 @@ All 'Data Structure and Algorithms' Exercises
 - ✅ Classic
 - ✅ Recursive
 - ✅ Recursive Ceil
-- Recursive Floor
-- Recursive Closest
+- ✅ Recursive Floor
+- ✅ Recursive Closest
 - Recursive Last Occurrence
 - Recursive First Occurrence
 - QuickSelect (unsorted array)
