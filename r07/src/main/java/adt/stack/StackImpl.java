@@ -37,7 +37,9 @@ public class StackImpl<T> implements Stack<T> {
 			throw new StackOverflowException();
 		}
 		
-		array[++top] = element;
+		if(element != null){
+			array[++top] = element;
+		}
 	}
 
 	@Override
