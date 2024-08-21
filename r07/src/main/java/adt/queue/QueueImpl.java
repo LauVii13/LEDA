@@ -19,14 +19,12 @@ public class QueueImpl<T> implements Queue<T> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return this.tail == -1;
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return this.tail == array.length - 1;
 	}
 
 	private void shiftLeft() {
