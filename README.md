@@ -41,6 +41,21 @@ All 'Data Structure and Algorithms' Exercises
   - KLargestOrderStatistics
   - Floor BinarySearch
 
+- **R06**
+  - Raiz (nth root of a number with binary search)
+
+- **R07**
+  - Queue
+    - Classic
+    - CircularQueue
+    - QueueUsingStacks
+  - Stack
+    - Classic
+
+- **PP1**
+  - RotatedArraySearch
+  
+  
 ## Own Implementations
 > <br>
 > folder *'_refatorando'* ('refactoring')<br>
