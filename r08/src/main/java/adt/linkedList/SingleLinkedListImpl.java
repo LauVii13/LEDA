@@ -29,9 +29,14 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
   public void insert(T element) {
     SingleLinkedListNode<T> aux = this.head;
 
+    if(this.head.isNIL()){
+      
+    }
+
     while (!aux.isNIL()) {
       aux = aux.getNext();
     }
+
   }
 
   @Override
