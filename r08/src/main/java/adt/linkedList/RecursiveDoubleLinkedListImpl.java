@@ -1,54 +1,105 @@
 package adt.linkedList;
 
 public class RecursiveDoubleLinkedListImpl<T> extends
-		RecursiveSingleLinkedListImpl<T> implements DoubleLinkedList<T> {
+    RecursiveSingleLinkedListImpl<T> implements DoubleLinkedList<T> {
 
-	protected RecursiveDoubleLinkedListImpl<T> previous;
+  protected RecursiveDoubleLinkedListImpl<T> previous;
 
-	public RecursiveDoubleLinkedListImpl() {
+  public RecursiveDoubleLinkedListImpl() {
 
-	}
+  }
 
-	@Override
-	public void insertFirst(T element) {
-		if(this.isEmpty()){
-			this.data = element;
-			this.next = new RecursiveDoubleLinkedListImpl<>();
-			this.previous = new RecursiveDoubleLinkedListImpl<>();
+  @Override
+  public void insertFirst(T element) {
+    if (this.isEmpty()) {
+      this.data = element;
+      RecursiveDoubleLinkedListImpl<T> proximo = new RecursiveDoubleLinkedListImpl<>();
+      proximo.setPrevious(this);
 
-			((RecursiveDoubleLinkedListImpl<T>) this.next).setPrevious(this);
-			this.previous.setNext(this);
-		}else{
-			RecursiveDoubleLinkedListImpl<T> aux = new RecursiveDoubleLinkedListImpl<>();
-			aux.setData(this.data);
-			aux.setPrevious(this);
-			aux.setNext(this.next);
-			
-			((RecursiveDoubleLinkedListImpl<T>) this.next).setPrevious(aux);
-			
-			this.data = element;
-			this.next = aux;
-		}
-	}
+      this.next = proximo;
+      this.previous = new RecursiveDoubleLinkedListImpl<>();
+      this.previous.setNext(this);
 
-	@Override
-	public void removeFirst() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+      // ((RecursiveDoubleLinkedListImpl<T>) this.next).setPrevious(this);
+    } else {
+      RecursiveDoubleLinkedListImpl<T> aux = new RecursiveDoubleLinkedListImpl<>();
+      RecursiveDoubleLinkedListImpl<T> proximo = new RecursiveDoubleLinkedListImpl<>();
 
-	@Override
-	public void removeLast() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+      aux.setData(this.data);
+      aux.setPrevious(this);
 
-	public RecursiveDoubleLinkedListImpl<T> getPrevious() {
-		return previous;
-	}
+      proximo.setData(this.next.getData());
+      proximo.setNext(this.next.getNext());
+      proximo.setPrevious(aux);
 
-	public void setPrevious(RecursiveDoubleLinkedListImpl<T> previous) {
-		this.previous = previous;
-	}
+      aux.setNext(proximo);
 
+      this.setData(element);
+      this.setNext(aux);
+    }
+  }
+
+  @Override
+  public void removeFirst() {
+    if (!this.isEmpty()) {
+      if (this.next.isEmpty()) {
+        this.next = null;
+        this.previous = null;
+        this.data = null;
+      } else {
+        this.data = this.next.getData();
+        RecursiveDoubleLinkedListImpl<T> proximo = new RecursiveDoubleLinkedListImpl<>();
+        proximo.setData(this.next.getNext().getData());
+        proximo.setNext(this.next.getNext().getNext());
+        proximo.setPrevious(this);
+        this.next = proximo;
+      }
+    }
+  }
+
+  @Override
+  public void removeLast() {
+    if (!this.isEmpty()) {
+      if (!this.next.isEmpty()) {
+        RecursiveDoubleLinkedListImpl<T> proximo = new RecursiveDoubleLinkedListImpl<>();
+        proximo.setData(this.next.getData());
+        proximo.setPrevious(this);
+        proximo.setNext(this.next.getNext());
+        this.next = proximo;
+
+        proximo.removeLast();
+
+        // ((RecursiveDoubleLinkedListImpl<T>) this.next).removeLast();
+      } else {
+
+        this.data = null;
+        this.next = null;
+
+        if (this.previous.isEmpty()) {
+          this.previous = null;
+        }
+      }
+    }
+  }
+
+  public RecursiveDoubleLinkedListImpl<T> getPrevious() {
+    return previous;
+  }
+
+  public void setPrevious(RecursiveDoubleLinkedListImpl<T> previous) {
+    this.previous = previous;
+  }
+
+  @Override
+  public void insert(T element) {
+    if (this.isEmpty()) {
+      this.data = element;
+      this.next = new RecursiveDoubleLinkedListImpl<>();
+      if (this.previous == null) {
+        previous = new RecursiveDoubleLinkedListImpl<>();
+      }
+    } else {
+      this.next.insert(element);
+    }
+  }
 }
