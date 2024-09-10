@@ -70,27 +70,24 @@ public class HashtableClosedAddressImpl<T> extends
   @Override
   public void insert(T element) {
     if (element != null) {
-      int hashCode = ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
+      int hashCode = getHash(element);
 
       if (this.table[hashCode] == null) {
         this.table[hashCode] = new LinkedList<T>();
       }
 
-      if (!internalList(hashCode).contains(element)) {
-        internalList(hashCode).addFirst(element);
+      internalList(hashCode).addFirst(element);
+      this.elements++;
 
-        this.elements++;
-
-        if (internalList(hashCode).size() > 1) { // !!!
-          this.COLLISIONS++;
-        }
+      if (internalList(hashCode).size() > 1) {
+        this.COLLISIONS++;
       }
     }
   }
 
   @Override
   public void remove(T element) {
-    if (indexOf(element) != -1) {
+    if (search(element) != null) {
       internalList(indexOf(element)).remove(element);
       this.elements--;
     }
@@ -99,11 +96,11 @@ public class HashtableClosedAddressImpl<T> extends
   @Override
   public T search(T element) {
     T result = null;
-    int index = indexOf(element);
+    int hashCode = getHash(element);
 
-    if (index != -1) {
-      int internalIndex = internalList(index).indexOf(element);
-      result = internalList(index).get(internalIndex);
+    if (internalList(hashCode) != null && internalList(hashCode).contains(element)) {
+      int internalIndex = internalList(hashCode).indexOf(element);
+      result = internalList(hashCode).get(internalIndex);
     }
 
     return result;
@@ -112,12 +109,9 @@ public class HashtableClosedAddressImpl<T> extends
   @Override
   public int indexOf(T element) {
     int result = -1;
-    if (element != null) {
-      int hashCode = ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
 
-      if (internalList(hashCode) != null && internalList(hashCode).contains(element)) {
-        result = hashCode;
-      }
+    if (search(element) != null) {
+      result = getHash(element);
     }
 
     return result;
@@ -127,4 +121,7 @@ public class HashtableClosedAddressImpl<T> extends
     return (LinkedList<T>) this.table[hashCode];
   }
 
+  private int getHash(T element) {
+    return ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
+  }
 }
