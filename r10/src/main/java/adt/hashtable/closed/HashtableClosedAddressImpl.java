@@ -96,11 +96,13 @@ public class HashtableClosedAddressImpl<T> extends
   @Override
   public T search(T element) {
     T result = null;
-    int hashCode = getHash(element);
+    if (element != null) {
+      int hashCode = getHash(element);
 
-    if (internalList(hashCode) != null && internalList(hashCode).contains(element)) {
-      int internalIndex = internalList(hashCode).indexOf(element);
-      result = internalList(hashCode).get(internalIndex);
+      if (internalList(hashCode) != null && internalList(hashCode).contains(element)) {
+        int internalIndex = internalList(hashCode).indexOf(element);
+        result = internalList(hashCode).get(internalIndex);
+      }
     }
 
     return result;
