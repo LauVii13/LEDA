@@ -1,8 +1,8 @@
 package adt.hashtable.open;
 
-import adt.hashtable.hashfunction.HashFunctionClosedAddress;
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
 import adt.hashtable.hashfunction.HashFunctionLinearProbing;
+import adt.hashtable.hashfunction.HashFunctionOpenAddress;
 
 public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
     AbstractHashtableOpenAddress<T> {
@@ -28,14 +28,14 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
       while (canSearch) {
         hashCode = getHash(element, prob++);
 
-        if (isFoundOrEmpty(hashCode, prob)) {
+        if (isMaxProb(prob) || isFreeToInsert(hashCode)) {
           canSearch = false;
         } else {
           this.COLLISIONS++;
         }
       }
 
-      if (this.table[hashCode] == null || this.table[hashCode].equals(this.deletedElement)) {
+      if (isFreeToInsert(hashCode)) {
         this.table[hashCode] = element;
         this.elements++;
       }
@@ -46,14 +46,13 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
   public void remove(T element) {
     int index = indexOf(element);
     if (index != -1) {
-      this.table[index] = this.deletedElement;
+      this.table[index] = new DELETED();
       this.elements--;
     }
   }
 
   @Override
   public T search(T element) {
-
     T result = null;
     int index = indexOf(element);
 
@@ -68,14 +67,17 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
   public int indexOf(T element) {
     int result = -1;
 
-    int prob = 0;
-    int hashCode = 0;
-    boolean canSearch = true;
-
     if (element != null) {
-      int hashCode = calculaHashProbing(element);
+      int prob = 0;
+      int hashCode = 0;
+      boolean canSearch = true;
 
-      if (this.table[hashCode].equals(element)) {
+      while (canSearch) {
+        hashCode = getHash(element, prob++);
+        canSearch = !isMaxProb(prob) && this.table[hashCode] != null && !element.equals(this.table[hashCode]);
+      }
+
+      if (!isFreeToInsert(hashCode) && element.equals(this.table[hashCode])) {
         result = hashCode;
       }
     }
@@ -83,26 +85,15 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
     return result;
   }
 
-  private int calculaHashProbing(T element) {
-    int prob = 0;
-    int hashCode = 0;
-    boolean canSearch = true;
-
-    while (canSearch) {
-      hashCode = ((HashFunctionLinearProbing<T>) this.hashFunction).hash(element, prob++);
-      canSearch = !isFoundOrEmpty(hashCode, prob);
-    }
-
-    return hashCode;
-  }
-
   private int getHash(T element, int prob) {
-    return ((HashFunctionLinearProbing<T>) this.hashFunction).hash(element, prob);
+    return ((HashFunctionOpenAddress<T>) this.hashFunction).hash(element, prob);
   }
 
-  private boolean isFoundOrEmpty(int hashCode, int prob) {
-    return prob >= this.table.length
-        || this.table[hashCode] == null
-        || this.table[hashCode].equals(this.deletedElement);
+  private boolean isMaxProb(int prob) {
+    return prob >= this.table.length;
+  }
+
+  private boolean isFreeToInsert(int hashCode) {
+    return this.table[hashCode] == null || this.table[hashCode].equals(this.deletedElement);
   }
 }
