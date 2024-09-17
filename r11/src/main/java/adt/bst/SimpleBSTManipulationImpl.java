@@ -59,7 +59,7 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
   private T orderStatistic(BST<T> tree, BSTNode<T> node, int k) {
     T result = null;
 
-    if (!node.isEmpty()) {
+    if (node != null && !node.isEmpty()) {
       if (k == 1) {
         result = node.getData();
       } else {

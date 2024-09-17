@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-09-17T17:53:20.979-0300</date>
+  <logger>VINICIUS GABRIEL LAUREANO</logger>
+  <level>FINE</level>
+  <message>File 123111119-VINICIUS GABRIEL LAUREANO.zip was received. It was sent by VINICIUS GABRIEL LAUREANO from IP 172.17.112.1 at 17-09-2024 17*53*20</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-09-17T20:53:28.102-0300</date>
+  <logger>VINICIUS GABRIEL LAUREANO</logger>
+  <level>FINE</level>
+  <message>File 123111119-VINICIUS GABRIEL LAUREANO.zip was received. It was sent by VINICIUS GABRIEL LAUREANO from IP 172.17.112.1 at 17-09-2024 20*53*28</message>
+</record>
