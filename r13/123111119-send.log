@@ -7,3 +7,23 @@
   <level>FINE</level>
   <message>File 123111119-VINICIUS GABRIEL LAUREANO.zip was received. It was sent by VINICIUS GABRIEL LAUREANO from IP 172.31.208.1 at 27-09-2024 15*52*06</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-10-09T09:54:42.852-0300</date>
+  <logger>VINICIUS GABRIEL LAUREANO</logger>
+  <level>FINE</level>
+  <message>File 123111119-VINICIUS GABRIEL LAUREANO.zip was received. It was sent by VINICIUS GABRIEL LAUREANO from IP 172.22.112.1 at 09-10-2024 09*54*42</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-10-09T09:56:49.647-0300</date>
+  <logger>VINICIUS GABRIEL LAUREANO</logger>
+  <level>FINE</level>
+  <message>File 123111119-VINICIUS GABRIEL LAUREANO.zip was received. It was sent by VINICIUS GABRIEL LAUREANO from IP 172.22.112.1 at 09-10-2024 09*56*49</message>
+</record>
